@@ -3,7 +3,7 @@ import 'package:decimal/decimal.dart';
 
 /// A Calculator.
 class Calculator {
-  
+
   /// 加
   static Decimal addDecStr(String a, String b) {
     return Decimal.parse(a) + Decimal.parse(b);
