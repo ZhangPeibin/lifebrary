@@ -11,7 +11,7 @@ class AppBarBackWidget extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     if(this.backImagePath==null){
-      this.backImagePath = "white_back.png";
+      this.backImagePath = "image/white_back.png";
     }
     return GestureDetector(
       onTap: (){
