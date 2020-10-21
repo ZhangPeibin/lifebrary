@@ -27,6 +27,7 @@ class ListTitleWidget extends StatelessWidget {
   String title;
   int titleColor;
   double titleSize;
+  bool titleBold;
 
   String subtitle;
   int subtitleColor;
@@ -72,34 +73,38 @@ class ListTitleWidget extends StatelessWidget {
 
   int itemBackgroundColor;
 
+  final EdgeInsets dividerMargin;
+
   ListTitleWidget(
       {Key key,
         this.itemHeight,
-      this.leading,
-      this.defaultleading = false,
-      this.leadingImagePath,
-      this.leadingSize = const [16, 16],
-      this.leadingCenter = true,
-      this.leadingMargin = const EdgeInsets.only(left: 16),
-      this.leadingCircle = false,
-      this.title,
-      this.titleColor = 0xff333333,
-      this.titleSize = 16,
-      this.titleWidget,
-      this.subtitle="",
-      this.subtitleColor = 0xff333333,
-      this.subtitleSize = 13,
-      this.subtitleAlignment = SubTitleAlignment.bottom,
-      this.trailing,
-      this.trailingSize = const [16, 16],
-      this.defaultTrailing = false,
-      this.trailingImagePath,
-      this.isTitleWrap = false,
-      this.onTap,
-      this.onLongPress,
-      this.showSubtitle = true,
-      this.itemBackgroundColor = 0xffffffff,
-      this.divider = true});
+        this.leading,
+        this.defaultleading = false,
+        this.leadingImagePath,
+        this.leadingSize = const [16, 16],
+        this.leadingCenter = true,
+        this.leadingMargin = const EdgeInsets.only(left: 16),
+        this.leadingCircle = false,
+        this.title,
+        this.titleBold= false,
+        this.titleColor = 0xff333333,
+        this.titleSize = 16,
+        this.titleWidget,
+        this.subtitle="",
+        this.subtitleColor = 0xff333333,
+        this.subtitleSize = 13,
+        this.subtitleAlignment = SubTitleAlignment.bottom,
+        this.trailing,
+        this.trailingSize = const [16, 16],
+        this.defaultTrailing = false,
+        this.trailingImagePath,
+        this.isTitleWrap = false,
+        this.onTap,
+        this.onLongPress,
+        this.showSubtitle = true,
+        this.dividerMargin,
+        this.itemBackgroundColor = 0xffffffff,
+        this.divider = true});
 
   void _leadingWidget() {
     if (leading == null) {
@@ -143,13 +148,13 @@ class ListTitleWidget extends StatelessWidget {
   Widget _circleAvatar(String url,bool net,double radius){
     if(net){
       return Container(
-          margin: leadingMargin,
-          child: CircleAvatar(
-            //头像半径
-            radius:radius,
-            //头像图片
-            backgroundImage:NetworkImage(url) ,
-          ),
+        margin: leadingMargin,
+        child: CircleAvatar(
+          //头像半径
+          radius:radius,
+          //头像图片
+          backgroundImage:NetworkImage(url) ,
+        ),
       );
     }else{
       return Container(
@@ -192,6 +197,7 @@ class ListTitleWidget extends StatelessWidget {
 
   Widget _divider() {
     return Container(
+      margin: dividerMargin,
       height: 0.5,
       color: Color(0xffe9e9e9),
     );
@@ -205,13 +211,13 @@ class ListTitleWidget extends StatelessWidget {
       return Text(
         title,
         maxLines: 2,
-        style: TextStyle(color: Color(titleColor), fontSize: 16),
+        style: TextStyle(color: Color(titleColor), fontSize: 16,fontWeight: titleBold?FontWeight.w500:FontWeight.normal),
         softWrap: true,
       );
     } else {
       return Text(title,
           maxLines: 1,
-          style: TextStyle(color: Color(titleColor), fontSize: 16));
+          style: TextStyle(color: Color(titleColor), fontSize: 16,fontWeight: titleBold?FontWeight.w500:FontWeight.normal));
     }
   }
 
